@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      h2 {
+        margin-top: 0;
+      }
+      body {
+        font-family: sans-serif;
+      }
+      svg {
+        border: 1px solid #ddd;
+      }
+      .tooltip {
+        position: absolute;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 6px;
+        font-size: 12px;
+      }
+
+      #controls {
+        position: sticky;
+        top: 0;
+        background: white;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        z-index: 10;
+
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      #yearSlider {
+        width: 100%;
+        max-width: 200px;
+      }
+
+      #yearLabel {
+        min-width: 4ch;
+        text-align: right;
+      }
+
+      text.chart-title,
+      .ui-layer text,
+      .ui-layer .color-legend text {
+        fill: #111;
+        stroke: #fff;
+        stroke-width: 2px;
+        stroke-linejoin: round;
+        paint-order: stroke; /*draw stroke first, the fill   */
+      }
+
+      /* make the gradient bar visible */
+      .ui-layer .color-legend rect.gradient-bar {
+        stroke: #333;
+        stroke-width: 1px;
+      }
+
+      .section-inner {
+        width: calc(750px + 600px + 15px);
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .section-title {
+        margin: 3px 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .section-block {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .world-layout {
+        display: grid;
+        grid-template-columns: 750px 600px; /* match SVG widths */
+        column-gap: 15px;
+        align-items: start;
+        padding-bottom: 10px;
+        row-gap: 10px;
+      }
+
+      .world-right {
+        display: grid;
+        row-gap: 10px;
+      }
+
+      .germany-layout {
+        display: grid;
+        grid-template-columns: 750px 600px;
+        column-gap: 15px;
+        align-items: start;
+        /* margin-top: 10px; */
+        /* padding-bottom: 10px; */
+      }
+
+      .germany-right {
+        display: grid;
+        row-gap: 10px;
+      }
+
+      svg {
+        display: block;
+      }
+      hr {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="controls">
+      Year:
+      <input
+        type="range"
+        id="yearSlider"
+        min="2015"
+        max="2023"
+        step="1"
+        value="2019"
+      />
+      <span id="yearLabel">2019</span>
+
+    </div>
+
+    <!-- World -->
+    <section class="section-block">
+      <div class="section-inner">
+        <h2 id="worldHeading" class="section-title">World</h2>
+
+        <div class="world-layout">
+          <svg id="map" width="750" height="700"></svg>
+
+          <div class="world-right">
+            <svg id="boxplot" width="670" height="340"></svg>
+            <svg id="trend" width="670" height="350"></svg>
+          </div>
+
+          <svg id="countryCompare" width="1435" height="500"></svg>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Germany -->
+    <section class="section-block">
+      <div class="section-inner">
+        <h2 id="germanyHeading" class="section-title">Germany</h2>
+        <div class="germany-layout">
+          <svg id="germanyMap" width="750" height="700"></svg>
+          <div class="germany-right">
+            <svg id="germanyBoxplot" width="670" height="340"></svg>
+            <svg id="germanyTrend" width="670" height="350"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="tooltip" style="opacity: 0"></div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
