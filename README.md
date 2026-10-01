@@ -6,7 +6,7 @@ An interactive, coordinated-view visualization of annual mean nitrogen dioxide (
 
 **Source:** EEA *Air Quality In-Situ Measurement Station Data*, published on Zenodo (European Environment Agency, 2024, record [14513586](https://doi.org/10.5281/zenodo.14513586)).
 
-The original file is a Parquet table with annual values for NO₂, O₃, SO₂, PM10 and PM2.5 per station, 2015-2023 (not included in the repo). Only NO₂ is used here, because it is consistently available.
+The original file is a Parquet table with annual values for NO₂, O₃, SO₂, PM10 and PM2.5 per station, 2015-2023. Only NO₂ is used here, because it is consistently available.
 
 `parq2csv.py` reduces it to `air_quality_annual_viz.csv` (one row per station and year; rows with missing coordinates or NO₂ are dropped):
 
