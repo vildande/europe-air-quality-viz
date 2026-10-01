@@ -1,6 +1,6 @@
 # Interactive Exploration of Annual Mean NO₂ in Europe
 
-An interactive, coordinated-view visualization of annual mean nitrogen dioxide (NO₂) concentrations measured at air-quality monitoring stations across Europe. Built with [D3.js](https://d3js.org/) as a project for a data visualization course. The accompanying report is in `report.pdf`.
+An interactive, coordinated-view visualization of annual mean nitrogen dioxide (NO₂) concentrations measured at air-quality monitoring stations across Europe. Built with [D3.js](https://d3js.org/) as a project for a data visualization course. 
 
 ## Dataset
 
